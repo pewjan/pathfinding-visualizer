@@ -3,7 +3,8 @@
 * {
   font-family: "Dongle", sans-serif;
   font-size: 1.6rem;
-  transition: all 0.2s ease-out;
+  transition: color 0.4s ease-out;
+  box-sizing: border-box;
 }
 .App {
   display: flex;
@@ -20,16 +21,68 @@
   justify-content: space-evenly;
   background-color: #5ebec4;
   color: black;
+  height: 60px;
+  width: 100%;
 }
 
 li {
   list-style-type: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
+}
+
+.vizualizebtn {
+  background-color: #fdf5df;
+  border-radius: 5px;
+  padding: 0.5px 10px;
+  -webkit-box-shadow: -1px 0px 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: -1px 0px 15px 5px rgba(0, 0, 0, 0.5);
 }
 
 .logo:hover,
 li:hover {
   color: #f92c85;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main > h1 {
+  margin-top: 0.5rem;
+}
+.grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.grid > div {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid > div > div {
+  margin-left: 10px;
+  padding: 15px;
+  border: 1px black solid;
+  margin-bottom: 10px;
+  width: 10px;
+  height: 10px;
+}
+
+.grid > div > div:hover {
+  cursor: pointer;
+}
+
+.column:hover {
+  background-color: pink;
+  padding: 20px;
 }
