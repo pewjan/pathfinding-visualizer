@@ -1,6 +1,13 @@
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [openedAlgo, setOpenedAlgo] = useState(false);
+  const handleMenu = (e) => {
+    if (e.target.innerHTML === "Algorithms ▼") {
+      setOpenedAlgo(!openedAlgo);
+    }
+  };
   const gridArr = [];
   const displayGrid = () => {
     for (let row = 0; row < 10; row++) {
@@ -16,6 +23,13 @@ function App() {
       <nav className="navbar">
         <h1 className="logo">PathFinder</h1>
         <ul className="rightRow">
+          <li
+            onClick={(e) => {
+              handleMenu(e);
+            }}
+          >
+            Algorithms ▼
+          </li>
           <li className="vizualizebtn">Vizualize</li>
         </ul>
       </nav>
@@ -35,14 +49,9 @@ function App() {
       </div>
       <footer className="footer">
         <div className="items">
-          <h1>© Pujan, 2022</h1>
-          <div className="options">
-            <h1>Linear Search</h1>
-            <h1>Dijkstra</h1>
-            <h1>clear grid</h1>
-          </div>
-          <h1>Source Code</h1>
+          <h1>© Hidden, 2022</h1>
 
+          <h1>Source Code</h1>
         </div>
       </footer>
     </div>
