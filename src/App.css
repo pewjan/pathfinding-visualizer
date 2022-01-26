@@ -49,6 +49,7 @@ li:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height:540px;
 }
 
 .main > h1 {
@@ -85,4 +86,43 @@ li:hover {
 .column:hover {
   background-color: pink;
   padding: 20px;
+}
+
+.footer{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #C38D9E;
+  height:100px;
+}
+.items{
+  width:100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.items > h1:hover{
+  color:red;
+  cursor:pointer;
+}
+.options{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width:35%;
+}
+.options > h1{
+  color:white;
+  padding:1px 15px;
+  background-color: #8ee4af;
+  border-radius:30px;
+}
+
+.options >h1:hover{
+  background-color:#05386B;
+  cursor:pointer;
 }
