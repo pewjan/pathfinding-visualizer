@@ -1,14 +1,40 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function App() {
   const [openedAlgo, setOpenedAlgo] = useState(false);
+  const [algorithm, setAlgorithm] = useState("");
+  const algorithmRef = useRef();
   const handleMenu = (e) => {
     if (e.target.innerHTML === "Algorithms ▼") {
       setOpenedAlgo(!openedAlgo);
-      console.log(e.target.innerHTML);
     }
   };
+  const handleAlgorithmName = () => {
+    if (algorithm === "linear") {
+      return "Linear Algorithm";
+    } else if (algorithm === "astar") {
+      return "A* Algorithm";
+    } else {
+      return "Dijkstra Algorithm";
+    }
+  };
+  const handleClickOutside = (e) => {
+    if (openedAlgo == true) {
+      if (e.target.parentElement.className !== "algo") {
+        setOpenedAlgo(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutsideFunc = (e) => {
+      handleClickOutside(e);
+    };
+    document.addEventListener("click", handleClickOutsideFunc);
+    return () => document.removeEventListener("click", handleClickOutsideFunc);
+  }, [openedAlgo]);
+
   return (
     <div className="App">
       <nav className="navbar">
@@ -24,10 +50,28 @@ function App() {
               Algorithms ▼
             </p>
             {openedAlgo && (
-              <div className="algo">
-                <p>A* Search</p>
-                <p>Dijkstra's Algorithm</p>
-                <p>Breadth-first Search</p>
+              <div className="algo" ref={algorithmRef}>
+                <p
+                  onClick={() => {
+                    setAlgorithm("linear");
+                  }}
+                >
+                  Linear Search
+                </p>
+                <p
+                  onClick={() => {
+                    setAlgorithm("astar");
+                  }}
+                >
+                  A* Search
+                </p>
+                <p
+                  onClick={() => {
+                    setAlgorithm("dijkstra");
+                  }}
+                >
+                  Dijkstra's Algorithm
+                </p>
               </div>
             )}
           </li>
@@ -35,7 +79,11 @@ function App() {
         </ul>
       </nav>
       <div className="main">
-        <h1>Click on two points to find the path</h1>
+        <h1>
+          {algorithm === ""
+            ? "Select an Algorithm and Click on two points to find the path"
+            : `${handleAlgorithmName()} is selected`}
+        </h1>
       </div>
       <footer className="footer">
         <div className="items">
