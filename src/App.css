@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   background-color: #5ebec4;
   color: black;
   height: 9vh;
@@ -58,7 +58,7 @@ li:hover {
 .grid {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 50vw;
   justify-content: center;
   align-items: center;
 }
@@ -78,6 +78,33 @@ li:hover {
   height: 10px;
 }
 
+.algorithms {
+  font-size: 1em;
+}
+.algo {
+  position: absolute;
+  color: white;
+  background-color: black;
+  margin-top: 2%;
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.algo > p {
+  border: 1px solid black;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+.algo > p:hover {
+  background: green;
+}
+.clicked {
+  color: #f92c85;
+}
+
 .grid > div > div:hover {
   cursor: pointer;
 }
@@ -92,7 +119,7 @@ li:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #c38d9e;
+  background-color: #dad1c6;
   height: 13vh;
 }
 .items {
