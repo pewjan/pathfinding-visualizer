@@ -2,16 +2,18 @@
 
 * {
   font-family: "Dongle", sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   transition: color 0.4s ease-out;
   box-sizing: border-box;
 }
+
 .App {
   display: flex;
   flex-direction: column;
 }
 
 .logo {
+  font-size: 1.5rem;
   cursor: pointer;
 }
 .navbar {
@@ -91,15 +93,18 @@ li:hover {
   flex-direction: column;
   justify-content: center;
   border-radius: 5px;
+  align-items: flex-start;
 }
 
 .algo > p {
+  padding: 5px 50px;
   border: 1px solid black;
   font-size: 1rem;
   border-radius: 5px;
 }
 .algo > p:hover {
   background: #379683;
+  color: #f92c85;
 }
 .clicked {
   color: #f92c85;
