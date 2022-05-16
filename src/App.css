@@ -140,7 +140,7 @@ li:hover {
   cursor: pointer;
 }
 .rightRow {
-  width: 9.5rem;
+  width: 13rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -163,4 +163,57 @@ li:hover {
 .options > h1:hover {
   background-color: #05386b;
   cursor: pointer;
+}
+
+.graphInner {
+  width: 100%;
+  height: 100%;
+}
+
+.graphInner > div {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2px;
+}
+.Row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Col {
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  margin-right: 2px;
+  background-color: white;
+  text-align: center;
+}
+
+.Col:hover {
+  background-color: skyblue;
+}
+
+.startCol {
+  background-color: #8ee4af;
+}
+
+.endCol {
+  background-color: #f92c85;
+}
+
+.passed {
+  background-color: red;
+}
+
+.searched {
+  background-color: violet;
+}
+.clearbtn {
+  background-color: #fff685;
+  color: black;
+  border-radius: 5px;
+  padding: 0.5px 10px;
+  -webkit-box-shadow: -1px 0px 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: -1px 0px 15px 5px rgba(0, 0, 0, 0.5);
 }
