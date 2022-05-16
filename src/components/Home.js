@@ -20,6 +20,10 @@ function App() {
     [0, 1], //right
     [1, 0], //down
     [0, -1], //left
+    [-1, -1], //up left
+    [1, -1], //down left
+    [-1, 1], //up right
+    [1, 1], // down right
   ];
 
   const [graph, setGraph] = useState([]);
@@ -38,11 +42,13 @@ function App() {
       return "Breadth First Search";
     } else if (algorithm === "dfs") {
       return "Depth First Search";
+    } else if (algorithm === "bfsd") {
+      return "Breadth First Search w/ diagonal";
     }
   };
   const handleGraphCreation = () => {
     let copyGraph = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 8; i++) {
       let insideGraph = [];
       for (let j = 0; j < 20; j++) {
         insideGraph.push({ used: false, searched: false });
@@ -131,6 +137,8 @@ function App() {
       handleBsearch();
     } else if (algorithm === "dfs") {
       handleDsearch();
+    } else if (algorithm === "bfsd") {
+      handleBdsearch();
     }
   };
 
@@ -285,7 +293,7 @@ function App() {
         await sleep(100);
       }
 
-      for (let i = 0; i < directions.length; i++) {
+      for (let i = 0; i < 4; i++) {
         const currentDir = directions[i];
         q.push([row + currentDir[0], col + currentDir[1]]);
         prev.push([
@@ -392,6 +400,67 @@ function App() {
         await sleep(100);
       }
 
+      for (let i = 0; i < 4; i++) {
+        const currentDir = directions[i];
+        q.push([row + currentDir[0], col + currentDir[1]]);
+        prev.push([
+          currentPos[0],
+          currentPos[1],
+          row + currentDir[0],
+          col + currentDir[1],
+        ]);
+      }
+    }
+    let path = handleBackWards(prev, pathCounter);
+    path = path.reverse();
+    handlefsAfterVisualization(path);
+    setglobalPathCounter(path.length);
+    setFinished(true);
+  };
+  const handleBdsearch = async () => {
+    let startNodeRow = prevS[0];
+    let startNodeCol = prevS[1];
+    let endNodeRow = prevE[0];
+    let endNodeCol = prevE[1];
+    let pathCounter = 0;
+    let copyGraph = [...graph];
+    let prev = [];
+    const seen = new Array(copyGraph.length)
+      .fill(0)
+      .map(() => new Array(copyGraph[0].length).fill(false));
+
+    let found = false;
+    const q = [];
+    q.push([startNodeRow, startNodeCol]);
+    const values = [];
+    while (q.length !== 0) {
+      const currentPos = q.shift();
+      const row = currentPos[0];
+      const col = currentPos[1];
+      if (
+        row < 0 ||
+        row >= copyGraph.length ||
+        col < 0 ||
+        col >= copyGraph[0].length ||
+        seen[row][col]
+      ) {
+        continue;
+      }
+      seen[row][col] = true;
+      values.push(copyGraph[row][col]);
+      //console.log(values);
+      if (row === endNodeRow && endNodeCol === col) {
+        break;
+      }
+      if (copyGraph[row][col] !== "S") {
+        copyGraph[row][col].searched = true;
+        setGraphClassName(row, col);
+        pathCounter++;
+        const nextCopyGraph = [...copyGraph];
+        setGraph(nextCopyGraph);
+        await sleep(100);
+      }
+
       for (let i = 0; i < directions.length; i++) {
         const currentDir = directions[i];
         q.push([row + currentDir[0], col + currentDir[1]]);
@@ -409,7 +478,6 @@ function App() {
     setglobalPathCounter(path.length);
     setFinished(true);
   };
-
   useEffect(() => {
     handleGraphCreation();
     setCounter(0);
@@ -451,6 +519,13 @@ function App() {
                 >
                   D.F.S
                 </p>
+                <p
+                  onClick={() => {
+                    setAlgorithm("bfsd");
+                  }}
+                >
+                  B.F.S w/ Diagonal
+                </p>
               </div>
             )}
           </li>
@@ -478,8 +553,6 @@ function App() {
       </div>
       <footer className="footer">
         <div className="items">
-          <h1>© Hidden, 2022</h1>
-
           <h1>Source Code</h1>
         </div>
       </footer>
