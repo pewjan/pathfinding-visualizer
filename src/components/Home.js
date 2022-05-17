@@ -5,6 +5,8 @@ const Queue = require("@supercharge/queue-datastructure");
 function App() {
   const [openedAlgo, setOpenedAlgo] = useState(false);
   const [algorithm, setAlgorithm] = useState("");
+  const [row, setRow] = useState(8);
+  const [column, setColumn] = useState(20);
 
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
@@ -35,6 +37,7 @@ function App() {
       setOpenedAlgo(!openedAlgo);
     }
   };
+
   const handleAlgorithmName = () => {
     if (algorithm === "linear") {
       return "Linear Algorithm";
@@ -48,9 +51,9 @@ function App() {
   };
   const handleGraphCreation = () => {
     let copyGraph = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < row; i++) {
       let insideGraph = [];
-      for (let j = 0; j < 20; j++) {
+      for (let j = 0; j < column; j++) {
         insideGraph.push({ used: false, searched: false });
       }
       copyGraph.push(insideGraph);
@@ -172,7 +175,7 @@ function App() {
             pathCounter++;
             const nextCopyGraph = [...copyGraph];
             setGraph(nextCopyGraph);
-            await sleep(500);
+            await sleep(200);
           }
         } else if (i !== startNodeRow && i !== endNodeRow) {
           for (let j = 0; j <= graph[i].length - 1; j++) {
@@ -181,7 +184,7 @@ function App() {
             pathCounter++;
             const nextCopyGraph = [...copyGraph];
             setGraph(nextCopyGraph);
-            await sleep(500);
+            await sleep(200);
           }
         } else if (startNodeRow === endNodeRow && startNodeCol > endNodeCol) {
           for (let j = startNodeCol - 1; j >= endNodeCol + 1; j--) {
@@ -190,7 +193,7 @@ function App() {
             pathCounter++;
             const nextCopyGraph = [...copyGraph];
             setGraph(nextCopyGraph);
-            await sleep(500);
+            await sleep(200);
           }
         } else {
           if (startNodeRow !== endNodeRow) {
@@ -200,7 +203,7 @@ function App() {
               pathCounter++;
               const nextCopyGraph = [...copyGraph];
               setGraph(nextCopyGraph);
-              await sleep(500);
+              await sleep(200);
             }
           } else {
             for (let j = startNodeCol + 1; j <= endNodeCol - 1; j++) {
@@ -209,7 +212,7 @@ function App() {
               pathCounter++;
               const nextCopyGraph = [...copyGraph];
               setGraph(nextCopyGraph);
-              await sleep(500);
+              await sleep(200);
             }
           }
         }
@@ -223,7 +226,7 @@ function App() {
             pathCounter++;
             const nextCopyGraph = [...copyGraph];
             setGraph(nextCopyGraph);
-            await sleep(500);
+            await sleep(200);
           }
         } else if (i !== startNodeRow && i !== endNodeRow) {
           for (let j = graph[i].length - 1; j >= 0; j--) {
@@ -232,7 +235,7 @@ function App() {
             pathCounter++;
             const nextCopyGraph = [...copyGraph];
             setGraph(nextCopyGraph);
-            await sleep(500);
+            await sleep(200);
           }
         } else if (i === endNodeRow) {
           for (let j = graph[i].length - 1; j >= endNodeCol; j--) {
@@ -241,7 +244,7 @@ function App() {
             pathCounter++;
             const nextCopyGraph = [...copyGraph];
             setGraph(nextCopyGraph);
-            await sleep(500);
+            await sleep(200);
           }
         }
       }
@@ -481,7 +484,9 @@ function App() {
   useEffect(() => {
     handleGraphCreation();
     setCounter(0);
+    setFinished(false);
   }, [algorithm]);
+
   return (
     <div className="App">
       <nav className="navbar">
@@ -508,6 +513,7 @@ function App() {
                 <p
                   onClick={() => {
                     setAlgorithm("bfs");
+                    setFinished(false);
                   }}
                 >
                   B.F.S
@@ -515,6 +521,7 @@ function App() {
                 <p
                   onClick={() => {
                     setAlgorithm("dfs");
+                    setFinished(false);
                   }}
                 >
                   D.F.S
@@ -522,6 +529,7 @@ function App() {
                 <p
                   onClick={() => {
                     setAlgorithm("bfsd");
+                    setFinished(false);
                   }}
                 >
                   B.F.S w/ Diagonal
@@ -543,7 +551,9 @@ function App() {
             ? "Select an Algorithm and click on two points to find the path"
             : `${handleAlgorithmName()} is selected`}
         </h1>
-        <p>{finished && `The path length was ${globalPathCounter}`}</p>
+        <p>
+          {finished ? `The path length was ${globalPathCounter}` : <br></br>}
+        </p>
 
         <div className="graph">
           <div ref={graphRef} className="graphInner">
@@ -554,6 +564,33 @@ function App() {
       <footer className="footer">
         <div className="items">
           <h1>Source Code</h1>
+
+          <div className="regenDiv">
+            <label htmlFor="Rows">Rows</label>
+            <input
+              onChange={(e) => {
+                setRow(e.target.value);
+              }}
+              className="Rows"
+              type="text"
+            />
+            <label htmlFor="Column">Column</label>
+            <input
+              onChange={(e) => {
+                setColumn(e.target.value);
+              }}
+              className="Column"
+              type="text"
+            />
+            <input
+              onClick={() => {
+                handleClearBtn();
+              }}
+              className="Regen"
+              type="submit"
+              value="Regenerate Graph"
+            />
+          </div>
         </div>
       </footer>
     </div>

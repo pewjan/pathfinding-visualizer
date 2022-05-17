@@ -4,6 +4,7 @@
   font-family: "Dongle", sans-serif;
   font-size: 1.5rem;
   transition: color 0.4s ease-out;
+  transition: background-color 0.4s ease-in;
   box-sizing: border-box;
 }
 
@@ -184,7 +185,7 @@ li:hover {
 .Col {
   height: 40px;
   width: 40px;
-  border: 1px solid black;
+  border: 1px solid rgb(88, 78, 78);
   margin-right: 2px;
   background-color: white;
   text-align: center;
@@ -216,4 +217,24 @@ li:hover {
   padding: 0.5px 10px;
   -webkit-box-shadow: -1px 0px 5px 5px rgba(0, 0, 0, 0.5);
   box-shadow: -1px 0px 15px 5px rgba(0, 0, 0, 0.5);
+}
+.regenDiv {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.Rows,
+.Column {
+  height: 1.8rem;
+  width: 2.5rem;
+  margin-right: 20px;
+}
+.regenDiv > label {
+  text-align: center;
+  margin-right: 10px;
+}
+
+.Regen {
+  width: 10rem;
+  margin-left: 20px;
 }
