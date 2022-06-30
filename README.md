@@ -3,15 +3,20 @@
 
 # Technologies
 JavaScript
+
 React
+
 HTML
+
 CSS
 
 
 # Algorithm & Data Structure
-BFS
-DFS
-BFS W/ Diagonal 
+BFS - Breadth For Search
+
+DFS - Depth For Search
+
+BFS W/ Diagonal - Breadth For Search with Diagonal 
 
 All the algorithm was used ina 2D Array
 
