@@ -490,7 +490,9 @@ function App() {
   return (
     <div className="App">
       <nav className="navbar">
-        <h1 className="logo">PathFinder</h1>
+        <a href="/">
+          <h1 className="logo">PathFinder</h1>
+        </a>
         <ul className="rightRow">
           <li className="algorithm">
             <p
@@ -563,8 +565,9 @@ function App() {
       </div>
       <footer className="footer">
         <div className="items">
-          <h1>Source Code</h1>
-
+          <a href="https://github.com/pewjan/pathfinding-visualizer/">
+            <h1>Source Code</h1>
+          </a>
           <div className="regenDiv">
             <label htmlFor="Rows">Rows</label>
             <input
